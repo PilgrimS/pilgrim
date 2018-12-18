@@ -1,0 +1,32 @@
+spring:
+  profiles:
+    active: dev
+  output:
+    ansi:
+      enabled: always
+  mvc:
+    favicon:
+      enabled: false
+  redis:
+    database: 0
+    host: 101.132.188.244
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 5
+        max-idle: 5
+        max-wait: -1ms
+        min-idle: 0
+    lettuce:
+      pool:
+        max-active: 5
+        max-idle: 5
+        max-wait: -1ms
+        min-idle: 0
+      shutdown-timeout: 100ms
+  datasource:
+    url: jdbc:mysql://101.132.188.244:3306/fsblog?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
