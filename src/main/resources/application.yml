@@ -26,7 +26,34 @@ spring:
         min-idle: 0
       shutdown-timeout: 100ms
   datasource:
-    url: jdbc:mysql://101.132.188.244:3306/fsblog?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    name: weixin
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: stat
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://101.132.188.244:3306/weixin?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false
+      username: root
+      password: root
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+mybatis:
+  type-aliases-package: com.pilgrim.hxy.entity
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+#pagehelper
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+    returnPageInfo: check

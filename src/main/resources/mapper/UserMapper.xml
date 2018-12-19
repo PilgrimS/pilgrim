@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pilgrim.hxy.mapper.UserMapper" >
+    <sql id="BASE_TABLE">
+        wc_user
+    </sql>
+
+    <sql id="BASE_COLUMN">
+        openid,nickname,sex,province,city,country,headimgurl,privilege,unionid
+    </sql>
+
+
+    <insert id="insert" parameterType="com.pilgrim.hxy.entity.WChatUser">
+        INSERT INTO
+        <include refid="BASE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            openid,nickname,sex,province,city,country,headimgurl,privilege,unionid
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            #{openid, jdbcType=BIGINT},#{nickname, jdbcType=VARCHAR},#{sex, jdbcType=INTEGER},#{province, jdbcType=VARCHAR},
+            #{city, jdbcType=VARCHAR},#{country, jdbcType=VARCHAR},#{headimgurl, jdbcType=VARCHAR},#{privilege, jdbcType=VARCHAR},
+            #{unionid, jdbcType=BIGINT},
+        </trim>
+    </insert>
+
+    <select id="selectUsers" resultType="com.pilgrim.hxy.entity.WChatUser">
+        SELECT
+        <include refid="BASE_COLUMN"/>
+        FROM
+        <include refid="BASE_TABLE"/>
+    </select>
+
+
+</mapper>
